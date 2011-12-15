@@ -185,7 +185,7 @@
 
 
 				<plugin>
-					<groupId>org.apache.jmeter</groupId>
+					<groupId>org.escidoc.jmeter</groupId>
 					<artifactId>maven-jmeter-plugin</artifactId>
 					<version>1.2</version>
 				</plugin>
@@ -398,7 +398,7 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.jmeter</groupId>
+				<groupId>org.escidoc.jmeter</groupId>
 				<artifactId>maven-jmeter-plugin</artifactId>
 				<executions>
 					<execution>
