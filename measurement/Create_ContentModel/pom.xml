@@ -460,5 +460,11 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	
+	<parent>
+		<groupId>org.escidoc.core.performance</groupId>
+		<artifactId>measurement</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
 </project>
