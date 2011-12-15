@@ -21,6 +21,24 @@
 		<url>http://www.fiz-karlsruhe.de</url>
 	</organization>
 	
+	<modules>
+	  <module>Create_ContentModel</module>
+	  <module>Create_ContentRelation</module>
+	  <module>Create_Context</module>
+	  <module>Create_OrganizationalUnit</module>
+	  <module>Create_item</module>
+	  <module>Retrieve_ContentModel</module>
+	  <module>Retrieve_ContentRelation</module>
+	  <module>Retrieve_Context</module>
+	  <module>Retrieve_OrganizationalUnit</module>
+	  <module>Retrieve_item</module>
+	  <module>Update_ContentModel</module>
+	  <module>Update_ContentRelation</module>
+	  <module>Update_Context</module>
+	  <module>Update_OrganizationalUnit</module>
+	  <module>Update_item</module>
+  </modules>  
+	
 	<dependencies>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
@@ -86,23 +104,7 @@
     </dependencies> 
   
   
-  <modules>
-	  <!-- module>Create_ContentModel</module>
-	  <module>Create_ContentRelation</module>
-	  <module>Create_Context</module>
-	  <module>Create_OrganizationalUnit</module -->
-	  <module>Create_item</module>
-	  <!--  module>Retrieve_ContentModel</module>
-	  <module>Retrieve_ContentRelation</module>
-	  <module>Retrieve_Context</module>
-	  <module>Retrieve_OrganizationalUnit</module>
-	  <module>Retrieve_item</module>
-	  <module>Update_ContentModel</module>
-	  <module>Update_ContentRelation</module>
-	  <module>Update_Context</module>
-	  <module>Update_OrganizationalUnit</module>
-	  <module>Update_item</module -->
-  </modules>  
+  
   
   <profiles>
 	    <profile>
@@ -223,19 +225,6 @@
        
 		
 	</repositories>
-	
-	
-  
-    	
-
-  
-
-  <distributionManagement>
-    <site>
-      <id>website</id>
-      <url>scp://webhost.company.com/www/website</url>
-    </site>
-  </distributionManagement>
 
  
 </project>
