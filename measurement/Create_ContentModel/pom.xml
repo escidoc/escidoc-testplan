@@ -7,12 +7,6 @@
 	<packaging>pom</packaging>
 	<name>eSciDoc Performance Measurement - Create Content Model</name>
 	<description>Test Core Performance</description>
-	
-	<parent>
-		<artifactId>measurement</artifactId>
-		<groupId>org.escidoc.core.performance</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
 
 	<issueManagement>
 		<system>Jira</system>
