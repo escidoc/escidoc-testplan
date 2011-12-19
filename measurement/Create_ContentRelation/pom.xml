@@ -11,72 +11,15 @@
 		
  	
 	<build>
-		<pluginManagement>
-			<plugins>
+     
+     <plugins>
 
-				<!-- exec-maven-plugin [default config] -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId>
-					<version>1.2</version>
-				</plugin>
-
-				<!-- maven-compiler-plugin [default config] -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
-					<configuration>
-						<source>${java.source.version}</source>
-						<target>${java.target.version}</target>
-						<showDeprecation>true</showDeprecation>
-						<showWarnings>true</showWarnings>
-						<verbose>true</verbose>
-						<fork>false</fork>
-						<meminitial>128m</meminitial>
-						<maxmem>512m</maxmem>
-						<debug>false</debug>
-						<optimize>true</optimize>
-					</configuration>
-				</plugin>
-
-
-				<plugin>
-					<groupId>org.escidoc.jmeter</groupId>
-					<artifactId>maven-jmeter-plugin</artifactId>
-					<version>1.2</version>
-				</plugin>
-
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.3</version>
-				</plugin>
-
-				<!-- cargo-maven2-plugin [default config] -->
-				<plugin>
-					<groupId>org.codehaus.cargo</groupId>
-					<artifactId>cargo-maven2-plugin</artifactId>
-					<version>1.1.2</version>
-				</plugin>
-
-				<!-- maven-resources-plugin [default config] -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.5</version>
-				</plugin>
-
-			</plugins>
-
-
-		</pluginManagement>
-
-		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
+				
+				    <!--  kopieren des escidoc installer config -->
 					<execution>
 						<id>copy-filtered-test-config</id>
 						<phase>prepare-package</phase>
@@ -84,16 +27,17 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${env.TEST_HOME}</outputDirectory>
+							<outputDirectory>${target.home}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/test/filtered-resources</directory>
+									<directory>../src/test/filtered-resources</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
 
+					<!-- kopieren des jmeter.properties (global) und testplan.properties (lokal) -->
 					<execution>
 						<id>copy-filtered-jmeter-test-config</id>
 						<phase>prepare-package</phase>
@@ -107,15 +51,22 @@
 									<directory>src/test/jmeter-filtered-resources</directory>
 									<filtering>true</filtering>
 								</resource>
+								<resource>
+									<directory>../src/test/jmeter-filtered-resources</directory>
+									<filtering>false</filtering>
+								</resource>
 							</resources>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
+            <!-- installation von escidoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
+				
+				<!-- kopieren des installer jars -->
 				<executions>
 					<execution>
 						<id>copy</id>
@@ -131,7 +82,7 @@
 									<version>${escidoc.core.version}</version>
 									<classifier>standard</classifier>
 									<overWrite>false</overWrite>
-									<outputDirectory>${env.TEST_HOME}</outputDirectory>
+									<outputDirectory>${target.home}</outputDirectory>
 									<destFileName>escidoc-installer.jar</destFileName>
 								</artifactItem>
 							</artifactItems>
@@ -146,6 +97,8 @@
 				<configuration>
 					<skip>${skipITs}</skip>
 				</configuration>
+				
+				<!-- escidoc installation -->
 				<executions>
 					<execution>
 						<id>install-escidoc-core</id>
@@ -158,14 +111,15 @@
 							<arguments>
 								<argument>-Dskip.validation=true</argument>
 								<argument>-jar</argument>
-								<argument>${env.TEST_HOME}/escidoc-installer.jar</argument>
-								<argument>${env.TEST_HOME}/${escidoc.installer.config}</argument>
+								<argument>${target.home}/escidoc-installer.jar</argument>
+								<argument>${target.home}/${escidoc.installer.config}</argument>
 							</arguments>
-							<outputFile>${env.TEST_HOME}/escidoc-installer.log
+							<outputFile>${target.home}/escidoc-installer.log
 							</outputFile>
 						</configuration>
 					</execution>
-
+					
+					<!-- Entfernen eines Fedora policies file -->
 					<execution>
 						<id>remove deny-unallowed-file-resolution</id>
 						<phase>pre-integration-test</phase>
@@ -175,14 +129,14 @@
 						<configuration>
 							<executable>rm</executable>
 							<arguments>
-								<argument>${env.TEST_HOME}/escidoc/fedora/server/fedora-internal-use/fedora-internal-use-repository-policies-approximating-2.0/deny-unallowed-file-resolution.xml</argument>
+								<argument>${target.home}/fedora/server/fedora-internal-use/fedora-internal-use-repository-policies-approximating-2.0/deny-unallowed-file-resolution.xml</argument>
 							</arguments>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 
-
+			<!-- starten und stoppen von JBOSS -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
@@ -210,10 +164,10 @@
 					<wait>${cargo.wait}</wait>
 					<container>
 						<containerId>jboss42x</containerId>
-						<home>${env.TEST_HOME}/escidoc/jboss</home>
+						<home>${target.home}/jboss</home>
 						<timeout>600000</timeout>
 						<systemProperties>
-							<ESCIDOC_HOME>${env.TEST_HOME}/escidoc/core</ESCIDOC_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
 						</systemProperties>
 					</container>
 					<configuration>
@@ -227,13 +181,14 @@
  							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
 						</properties>
 					</configuration>
-					 
-
-
-
 				</configuration>
 			</plugin>
-
+		
+     
+     
+     
+     
+			<!-- ausführen der JMETER Tests -->
 			<plugin>
 				<groupId>org.escidoc.jmeter</groupId>
 				<artifactId>maven-jmeter-plugin</artifactId>
@@ -246,33 +201,19 @@
 						</goals>
 						<configuration>
 							<reportDir>${project.build.directory}/jmeter-reports</reportDir>
-							<!-- jmeterUserProperties -->								
-								<!-- die folgenden properties sind globale Maven properties in diesem File -->	
-								<!-- hostname>${escidoc.server.host}</hostname>
-								<port>${escidoc.server.port}</port -->
-
-								<!-- contains testplan.properties -->
-								<!-- host>${escidoc.server.host}</host>
-								<port>${escidoc.server.port}</port -->
-							<!-- /jmeterUserProperties -->
-							
-							<jmeterDefaultPropertiesFile>
+							<workDir>${project.build.directory}/jmeter</workDir>
+							<userDir>${basedir}</userDir>
+							<jmeterLogLevel>INFO</jmeterLogLevel>
+							<!-- jmeterDefaultPropertiesFile>
 								../src/test/jmeter/jmeter.properties
-							</jmeterDefaultPropertiesFile>
+							</jmeterDefaultPropertiesFile -->
 							<jmeterCustomPropertiesFile>
 								${project.build.directory}/testplan.properties
 							</jmeterCustomPropertiesFile>
-							<!--jmeterJavaProperties>
-		   						<java.property>user.dir=/home/matthias/Entwicklung/Tools/jakarta-jmeter-2.4</java.property>
-							</jmeterJavaProperties -->
 						</configuration>
 					</execution>
 				</executions>
-				
-				
 			</plugin>
-
-
 		</plugins>
 	</build>
 

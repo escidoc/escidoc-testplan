@@ -22,22 +22,62 @@
 	</organization>
 	
 	<modules>
+	
+	  <module>Create_item</module>
 	  <module>Create_ContentModel</module>
 	  <module>Create_ContentRelation</module>
 	  <module>Create_Context</module>
 	  <module>Create_OrganizationalUnit</module>
-	  <module>Create_item</module>
+	
+	  <module>Retrieve_item</module>
 	  <module>Retrieve_ContentModel</module>
 	  <module>Retrieve_ContentRelation</module>
 	  <module>Retrieve_Context</module>
 	  <module>Retrieve_OrganizationalUnit</module>
-	  <module>Retrieve_item</module>
-	  <module>Update_ContentModel</module>
+	  
+	  <!-- module>Update_ContentModel</module>
 	  <module>Update_ContentRelation</module>
 	  <module>Update_Context</module>
 	  <module>Update_OrganizationalUnit</module>
-	  <module>Update_item</module>
+	  <module>Update_item</module -->
   </modules>  
+  
+  <properties>
+
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    
+		<java.source.version>1.6</java.source.version>
+		<java.target.version>1.6</java.target.version>
+		<!-- installationsverzeichnis fuer escidoc - es wird empfohlen eine zentrales Verzeichnis zu verwenden -->
+		<target.home>${project.build.directory}/escidoc</target.home>
+		<!-- target.home>${env.TEST_HOME}/escidoc</target.home -->
+		
+		<escidoc.server.host>localhost</escidoc.server.host>
+		<escidoc.server.port>8080</escidoc.server.port>
+		<!--  die version wird in den Profilen gesetzt -->
+		<escidoc.core.version>${escidocVersion}</escidoc.core.version>
+		<escidoc.installer.config>escidoc-core-installer-config.xml</escidoc.installer.config>
+
+		<!-- for test installation -->
+		<escidoc.database.host>localhost</escidoc.database.host>
+		<escidoc.database.port>5432</escidoc.database.port>
+		<escidoc.database.user>escidoc</escidoc.database.user>
+		<escidoc.database.password>escidoc</escidoc.database.password>
+
+		<!-- Administrator Login Detail for eSciDoc -->
+		<escidoc.admin.user>sysadmin</escidoc.admin.user>
+		<escidoc.admin.password>esciDoc</escidoc.admin.password>
+
+		<escidoc.inspector.user>inspector</escidoc.inspector.user>
+		<escidoc.inspector.password>inspector</escidoc.inspector.password>
+
+		<escidoc.depositor.user>depositor</escidoc.depositor.user>
+		<escidoc.depositor.password>depositor</escidoc.depositor.password>
+
+		<fedora.database.user>fedoraAdmin</fedora.database.user>
+		<fedora.database.password>fedoraAdmin</fedora.database.password>
+
+	</properties> 
 	
 	<dependencies>
 		<dependency>
@@ -118,7 +158,7 @@
 	      <properties>
 			<skipITs>true</skipITs>
 			<skipServer>false</skipServer>
-			<escidoc.core.version>1.3.2</escidoc.core.version>
+			<escidocVersion>1.3.2</escidocVersion>
 	      </properties>
 	    </profile>
 
@@ -133,7 +173,7 @@
 	      <properties>
 			<skipITs>false</skipITs>
 			<skipServer>false</skipServer>
-			<escidoc.core.version>1.4</escidoc.core.version>
+			<escidocVersion>1.4</escidocVersion>
 	      </properties>
 	    </profile>	
 	    
@@ -154,39 +194,68 @@
 	    
     </profiles>
       
+    <build>
+		<pluginManagement>
+			<plugins>
+
+				<!-- exec-maven-plugin [default config] -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.2</version>
+				</plugin>
+
+				<!-- maven-compiler-plugin [default config] -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<verbose>true</verbose>
+						<fork>false</fork>
+						<meminitial>128m</meminitial>
+						<maxmem>512m</maxmem>
+						<debug>false</debug>
+						<optimize>true</optimize>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.escidoc.jmeter</groupId>
+					<artifactId>maven-jmeter-plugin</artifactId>
+					<version>1.2</version>
+				</plugin>
+				
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+
+				<!-- cargo-maven2-plugin [default config] -->
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<version>1.1.2</version>
+				</plugin>
+
+				<!-- maven-resources-plugin [default config] -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+	</build>	
   
-  <properties>
-
-	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	    
-		<java.source.version>1.6</java.source.version>
-		<java.target.version>1.6</java.target.version>
-		
-		<escidoc.server.host>localhost</escidoc.server.host>
-		<escidoc.server.port>8080</escidoc.server.port>
-		<escidoc.core.version>${escidocVersion}</escidoc.core.version>
-		<escidoc.installer.config>escidoc-core-installer-config.xml</escidoc.installer.config>
-
-		<!-- for test installation -->
-		<escidoc.database.host>localhost</escidoc.database.host>
-		<escidoc.database.port>5432</escidoc.database.port>
-		<escidoc.database.user>escidoc</escidoc.database.user>
-		<escidoc.database.password>escidoc</escidoc.database.password>
-
-		<!-- Administrator Login Detail for eSciDoc -->
-		<escidoc.admin.user>sysadmin</escidoc.admin.user>
-		<escidoc.admin.password>esciDoc</escidoc.admin.password>
-
-		<escidoc.inspector.user>inspector</escidoc.inspector.user>
-		<escidoc.inspector.password>inspector</escidoc.inspector.password>
-
-		<escidoc.depositor.user>depositor</escidoc.depositor.user>
-		<escidoc.depositor.password>depositor</escidoc.depositor.password>
-
-		<fedora.database.user>fedoraAdmin</fedora.database.user>
-		<fedora.database.password>fedoraAdmin</fedora.database.password>
-
-	</properties> 
 	
 	
 	<pluginRepositories>
@@ -209,7 +278,7 @@
 		</repository>
 
 
-                <!-- needed for the JMETER maven plugin -->
+        <!-- needed for the JMETER maven plugin -->
 		<repository>
 		    <id>Java maven repo</id>
 		    <url>http://download.java.net/maven/2</url>
@@ -219,9 +288,9 @@
 		    <url>http://yciabaud.github.com/jmeter-maven-plugin/repository</url>
 		</repository>
 		<repository>
-            		<id>JBoss Thirdparty Releases</id>
-            		<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
-        	</repository>
+        	<id>JBoss Thirdparty Releases</id>
+        	<url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
+        </repository>
        
 		
 	</repositories>

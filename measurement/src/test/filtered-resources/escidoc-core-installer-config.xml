@@ -69,7 +69,7 @@
 </com.izforge.izpack.panels.UserInputPanel>
 <com.izforge.izpack.panels.JDKPathPanel id="CommonJDKPath"/>
 <com.izforge.izpack.panels.TargetPanel id="EscidocTarget">
-<installpath>${env.TEST_HOME}${file.separator}escidoc</installpath>
+<installpath>${target.home}</installpath>
 </com.izforge.izpack.panels.TargetPanel>
 <com.izforge.izpack.panels.TreePacksPanel id="EscidocPacks">
 <pack index="0" name="eSciDoc" selected="true"/>
