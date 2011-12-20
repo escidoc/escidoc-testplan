@@ -23,17 +23,17 @@
 	
 	<modules>
 	
-	  <module>Create_item</module>
-	  <!-- module>Create_ContentModel</module>
+	  <!-- module>Create_item</module>
+	  <module>Create_ContentModel</module>
 	  <module>Create_ContentRelation</module>
 	  <module>Create_Context</module>
-	  <module>Create_OrganizationalUnit</module>
+	  <module>Create_OrganizationalUnit</module -->
 	
 	  <module>Retrieve_item</module>
-	  <module>Retrieve_ContentModel</module>
-	  <module>Retrieve_ContentRelation</module>
+	  <!-- module>Retrieve_ContentModel</module>
 	  <module>Retrieve_Context</module>
-	  <module>Retrieve_OrganizationalUnit</module -->
+	  <module>Retrieve_OrganizationalUnit</module>
+	  <module>Retrieve_ContentRelation</module -->
 	  
 	  <!-- module>Update_ContentModel</module>
 	  <module>Update_ContentRelation</module>
@@ -252,7 +252,7 @@
 				<plugin>
 					<groupId>org.escidoc.jmeter</groupId>
 					<artifactId>maven-jmeter-plugin</artifactId>
-					<version>1.2</version>
+					<version>1.2.1</version>
 				</plugin>
 				
 
