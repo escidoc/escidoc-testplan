@@ -3,14 +3,15 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.escidoc.core</groupId>
-	<artifactId>create_organizational_unit</artifactId>
+	<artifactId>install_escidoc_first</artifactId>
 	<packaging>pom</packaging>
-	<name>eSciDoc Performance Measurement - Create Organizational Unit</name>
+	<name>eSciDoc Performance Measurement - Install Escidoc First</name>
 	<description>Test Core Performance</description>
-
+	
  	
 	 <build>
-      <plugins>
+     
+     <plugins>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -28,34 +29,13 @@
 							<outputDirectory>${target.home}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${project.parent.basedir}/src/test/filtered-resources</directory>
+									<directory>../src/test/filtered-resources</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
 
-					<!-- kopieren des jmeter.properties (global) und testplan.properties (lokal) -->
-					<execution>
-						<id>copy-filtered-jmeter-test-config</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/test/jmeter-filtered-resources</directory>
-									<filtering>true</filtering>
-								</resource>
-								<resource>
-									<directory>${project.parent.basedir}/src/test/jmeter-filtered-resources</directory>
-									<filtering>false</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 
@@ -93,7 +73,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<configuration>
-					<skip>${skipITs}</skip>
+					<skip>${skip.install.first}</skip>
 				</configuration>
 				
 				<!-- escidoc installation -->
@@ -132,94 +112,16 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-
-			<!-- starten und stoppen von JBOSS -->
-			<plugin>
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven2-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<wait>false</wait>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<skip>${skipServer}</skip>
-					<wait>${cargo.wait}</wait>
-					<container>
-						<containerId>jboss42x</containerId>
-						<home>${target.home}/jboss</home>
-						<timeout>600000</timeout>
-						<systemProperties>
-							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
-						</systemProperties>
-					</container>
-					<configuration>
-						<type>standalone</type>
-						<properties>
-							<cargo.hostname>localhost</cargo.hostname>
-							<cargo.protocol>http</cargo.protocol>
-							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
-							<cargo.rmi.port>1099</cargo.rmi.port>
-							<cargo.logging>medium</cargo.logging>
- 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
-						</properties>
-					</configuration>
-				</configuration>
-			</plugin>
-		
-     
-     
-     
-     
-			<!-- ausführen der JMETER Tests -->
-			<plugin>
-				<groupId>org.escidoc.jmeter</groupId>
-				<artifactId>maven-jmeter-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>jmeter-tests</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>jmeter</goal>
-						</goals>
-						<configuration>
-							<reportDir>${project.build.directory}/jmeter-reports</reportDir>
-							<workDir>${project.build.directory}/jmeter</workDir>
-							<userDir>${basedir}</userDir>
-							<jmeterLogLevel>DEBUG</jmeterLogLevel>
-							<jmeterDefaultPropertiesFile>
-								${project.parent.basedir}/src/test/jmeter/jmeter.properties
-							</jmeterDefaultPropertiesFile>
-							<jmeterCustomPropertiesFile>
-								${project.build.directory}/testplan.properties
-							</jmeterCustomPropertiesFile>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			</plugin>   
+			
 		</plugins>
-    
 	</build>
-	
 
+		
 	<parent>
 		<groupId>org.escidoc.core.performance</groupId>
 		<artifactId>measurement</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
 </project>

@@ -8,9 +8,8 @@
 	<name>eSciDoc Performance Measurement - Update ContentRelation</name>
 	<description>Test Core Performance</description>
 
-	<build>
-     
-     <plugins>
+	 <build>
+      <plugins>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -28,7 +27,7 @@
 							<outputDirectory>${target.home}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>../src/test/filtered-resources</directory>
+									<directory>${project.parent.basedir}/src/test/filtered-resources</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -50,7 +49,7 @@
 									<filtering>true</filtering>
 								</resource>
 								<resource>
-									<directory>../src/test/jmeter-filtered-resources</directory>
+									<directory>${project.parent.basedir}/src/test/jmeter-filtered-resources</directory>
 									<filtering>false</filtering>
 								</resource>
 							</resources>
@@ -201,10 +200,10 @@
 							<reportDir>${project.build.directory}/jmeter-reports</reportDir>
 							<workDir>${project.build.directory}/jmeter</workDir>
 							<userDir>${basedir}</userDir>
-							<jmeterLogLevel>INFO</jmeterLogLevel>
-							<!-- jmeterDefaultPropertiesFile>
-								../src/test/jmeter/jmeter.properties
-							</jmeterDefaultPropertiesFile -->
+							<jmeterLogLevel>DEBUG</jmeterLogLevel>
+							<jmeterDefaultPropertiesFile>
+								${project.parent.basedir}/src/test/jmeter/jmeter.properties
+							</jmeterDefaultPropertiesFile>
 							<jmeterCustomPropertiesFile>
 								${project.build.directory}/testplan.properties
 							</jmeterCustomPropertiesFile>
@@ -213,8 +212,9 @@
 				</executions>
 			</plugin>
 		</plugins>
+    
 	</build>
-
+	
 
 	<parent>
 		<groupId>org.escidoc.core.performance</groupId>
