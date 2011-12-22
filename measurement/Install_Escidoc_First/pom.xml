@@ -29,7 +29,7 @@
 							<outputDirectory>${target.home}</outputDirectory>
 							<resources>
 								<resource>
-									<directory>../src/test/filtered-resources</directory>
+									<directory>${project.parent.basedir}/src/test/filtered-resources</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -58,7 +58,7 @@
 									<groupId>org.escidoc.core</groupId>
 									<artifactId>installer</artifactId>
 									<version>${escidoc.core.version}</version>
-									<classifier>standard</classifier>
+									<!-- classifier>standard</classifier -->
 									<overWrite>false</overWrite>
 									<outputDirectory>${target.home}</outputDirectory>
 									<destFileName>escidoc-installer.jar</destFileName>

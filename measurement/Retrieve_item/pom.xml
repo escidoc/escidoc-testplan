@@ -77,7 +77,7 @@
 									<groupId>org.escidoc.core</groupId>
 									<artifactId>installer</artifactId>
 									<version>${escidoc.core.version}</version>
-									<classifier>standard</classifier>
+									<!-- classifier>standard</classifier -->
 									<overWrite>false</overWrite>
 									<outputDirectory>${target.home}</outputDirectory>
 									<destFileName>escidoc-installer.jar</destFileName>
