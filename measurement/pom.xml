@@ -275,7 +275,7 @@
 				<plugin>
 					<groupId>org.escidoc.jmeter</groupId>
 					<artifactId>maven-jmeter-plugin</artifactId>
-					<version>1.2.1</version>
+					<version>1.2.2</version>
 				</plugin>
 				
 
