@@ -192,6 +192,7 @@
 			<skipITs>false</skipITs>
 			<skipServer>false</skipServer>
 			<escidocVersion>1.4</escidocVersion>
+			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
 	      </properties>
 	    </profile>	
 	    
