@@ -28,7 +28,7 @@ import org.xml.sax.SAXException;
 DateFormat fmt = new SimpleDateFormat("yyMMdd_HHmmss");
 int thread =  ctx.getThreadNum();
 
-
+/*
 if (thread == 0) { 
 	// leg eine neues File an, da neuer run
 	filename=props.get("resultdir") + "/objects_" + fmt.format(new Date()) + ".csv";
@@ -46,9 +46,11 @@ if (thread == 0) {
 	filename = props.get("resultdir") + "/" + files[0].getName();
 }
 
+*/
+
 //filename=props.get("resultdir");
-print("Objects filename " + filename);
-print("threadNum " + ctx.getThreadNum());
+/*print("Objects filename " + filename);
+print("threadNum " + ctx.getThreadNum()); */
 	
 // Get Response Data
 output = ctx.getPreviousResult().getResponseDataAsString(); 
@@ -188,10 +190,19 @@ InputStream bais = new ByteArrayInputStream(output.getBytes());
 
 // Start IO
 
+//f = new FileOutputStream(filename,true);
+//p = new PrintStream(f);
+//this.interpreter.setOut(p);
+//print(lastmoddate +","+objectType+","+objectId);
+if (thread > -1 ) { 		    
+filename=props.get("resultdir") + "/" + objectId  + ".xml";
+print("Objects filename " + filename);
+}
 f = new FileOutputStream(filename,true);
 p = new PrintStream(f);
 this.interpreter.setOut(p);
-print(lastmoddate +","+objectType+","+objectId); 
+print(output);
+
 
 
 
