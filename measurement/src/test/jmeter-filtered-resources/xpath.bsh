@@ -195,7 +195,7 @@ InputStream bais = new ByteArrayInputStream(output.getBytes());
 //this.interpreter.setOut(p);
 //print(lastmoddate +","+objectType+","+objectId);
 if (thread > -1 ) { 		    
-filename=props.get("resultdir") + "/" + objectId  + ".xml";
+filename=props.get("resultdir") + "/" + objectId  + ".hxml";
 print("Objects filename " + filename);
 }
 f = new FileOutputStream(filename,true);
