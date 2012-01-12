@@ -23,6 +23,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
+
+/**
+ * Outputs the entire response in seperate files. The filename is the objectId with the extension .hxml
+ * Please rename this file to xpath.bsh to run it with the JMeter tests. 
+ * 
+ */
 // File to write to
 // create file only once (check if file exists, other create a new one)
 DateFormat fmt = new SimpleDateFormat("yyMMdd_HHmmss");

@@ -23,6 +23,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
+/**
+ * Output a csv list with the last modified date, object type, object id and filename of the ingested xml. 
+ * 
+ * 
+ */
 // File to write to
 // create file only once (check if file exists, other create a new one)
 DateFormat fmt = new SimpleDateFormat("yyMMdd_HHmmss");
