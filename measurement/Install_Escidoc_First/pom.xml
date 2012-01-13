@@ -35,7 +35,8 @@
 							</resources>
 						</configuration>
 					</execution>
-
+					
+					
 				</executions>
 			</plugin>
 
@@ -66,6 +67,29 @@
 							</artifactItems>
 						</configuration>
 					</execution>
+					
+					<!-- kopieren des testdaten jars -->
+					<execution>
+						<id>copy testdaten</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									 <groupId>org.escidoc.core.performance</groupId>
+		   							 <artifactId>testdaten</artifactId>
+		    						 <version>0.1</version>
+									 <overWrite>false</overWrite>
+									 <outputDirectory>${project.parent.basedir}/testdaten/daten</outputDirectory>
+									 <destFileName>testdaten-archive.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					
+					
 				</executions>
 			</plugin>
 
@@ -76,8 +100,28 @@
 					<skip>${skip.install.first}</skip>
 				</configuration>
 				
-				<!-- escidoc installation -->
 				<executions>
+				<!-- testdaten extraction -->
+					<execution>
+						<id>extract-testdaten</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>jar</executable>
+							 <workingDirectory>${project.parent.basedir}/testdaten/daten</workingDirectory>
+							<arguments>
+								<argument>-xf</argument>
+								<argument>testdaten-archive.jar</argument>
+							</arguments>
+							<outputFile>${target.home}/testdaten-deploy.log
+							</outputFile>
+						</configuration>
+					</execution>
+				
+				<!-- escidoc installation -->
+				
 					<execution>
 						<id>install-escidoc-core</id>
 						<phase>pre-integration-test</phase>
@@ -111,9 +155,11 @@
 							</arguments>
 						</configuration>
 					</execution>
+					
+						
 				</executions>
-			</plugin>   
-			
+			</plugin> 
+				
 		</plugins>
 	</build>
 

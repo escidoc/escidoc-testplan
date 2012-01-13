@@ -162,7 +162,7 @@
 					<container>
 						<containerId>jboss42x</containerId>
 						<home>${target.home}/jboss</home>
-						<timeout>600000</timeout>
+						<timeout>900000</timeout>
 						<systemProperties>
 							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
 						</systemProperties>

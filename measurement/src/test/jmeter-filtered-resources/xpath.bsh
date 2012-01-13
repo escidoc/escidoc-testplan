@@ -199,13 +199,27 @@ InputStream bais = new ByteArrayInputStream(output.getBytes());
 // End of Xpath stuff
 
 // Start IO
-
+// raussschreiben der objects id für die update um die Testdaten zu aktualisieren.
 f = new FileOutputStream(filename,true);
 p = new PrintStream(f);
 this.interpreter.setOut(p);
 print(lastmoddate + "," + objectType + "," + objectId + "," + ctx.getVariables().get("filepath"));
 
+// rausschreiben der testdaten.csv Datei für die retrieves
+String module = "item"; 
+if (objectType.equals("item")) {
+	module="item";
+} 
 
+filename1=props.get("basedir") + "/testdaten/config/testdaten_"+ objectType +".csv";
+if (thread == 0) {
+  f1 = new FileOutputStream(filename1,false);
+} else { 
+  f1 = new FileOutputStream(filename1,true);	
+}
+p1 = new PrintStream(f1);
+this.interpreter.setOut(p1);
+print(objectId);
 
 
 

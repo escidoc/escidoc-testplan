@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.escidoc.core</groupId>
+	<artifactId>install_testdata</artifactId>
+	<packaging>pom</packaging>
+	<name>eSciDoc Performance Measurement - Install Testdata</name>
+	<description>Test Core Performance</description>
+	
+ 	
+	 <build>
+     
+     <plugins>
+
+            <!-- installation von testdaten jar-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				
+				<executions>
+					<!-- kopieren des testdaten jars -->
+					<execution>
+						<id>copy testdaten</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									 <groupId>org.escidoc.core.performance</groupId>
+		   							 <artifactId>testdaten</artifactId>
+		    						 <version>0.1</version>
+									 <overWrite>true</overWrite>
+									 <outputDirectory>${project.parent.basedir}/testdaten/daten</outputDirectory>
+									 <destFileName>testdaten-archive.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					
+					
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<skip>${skip.install.testdata}</skip>
+				</configuration>
+				
+				<executions>
+				<!-- testdaten extraction -->
+					<execution>
+						<id>extract-testdaten</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>jar</executable>
+							 <workingDirectory>${project.parent.basedir}/testdaten/daten</workingDirectory>
+							<arguments>
+								<argument>-xf</argument>
+								<argument>testdaten-archive.jar</argument>
+							</arguments>
+							<outputFile>${target.home}/testdaten-deploy.log
+							</outputFile>
+						</configuration>
+					</execution>
+						
+				</executions>
+			</plugin> 
+				
+		</plugins>
+	</build>
+
+		
+	<parent>
+		<groupId>org.escidoc.core.performance</groupId>
+		<artifactId>measurement</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+</project>
