@@ -199,17 +199,19 @@ InputStream bais = new ByteArrayInputStream(output.getBytes());
 // End of Xpath stuff
 
 // Start IO
+		    
+ // rausschreiben der testdaten.csv Datei für die retrieves
+ String module = "item"; 
+ if (objectType.equals("item")) {
+   	module="item";
+ } 
 // raussschreiben der objects id für die update um die Testdaten zu aktualisieren.
 f = new FileOutputStream(filename,true);
 p = new PrintStream(f);
 this.interpreter.setOut(p);
-print(lastmoddate + "," + objectType + "," + objectId + "," + ctx.getVariables().get("filepath"));
+print(lastmoddate + "," + objectType + "," + objectId + "," + props.get("basedir") + "/testdaten/response/" +  objectId  + ".hxml");
 
-// rausschreiben der testdaten.csv Datei für die retrieves
-String module = "item"; 
-if (objectType.equals("item")) {
-	module="item";
-} 
+
 
 filename1=props.get("basedir") + "/testdaten/config/testdaten_"+ objectType +".csv";
 if (thread == 0) {
@@ -220,6 +222,16 @@ if (thread == 0) {
 p1 = new PrintStream(f1);
 this.interpreter.setOut(p1);
 print(objectId);
+
+// rausschreiben der Repsonses
+if (thread > -1 ) { 		    
+filename2=props.get("basedir") + "/testdaten/response/" + objectId  + ".hxml";
+//print("Objects filename " + filename2);
+}
+f2 = new FileOutputStream(filename2,false);
+p2 = new PrintStream(f2);
+this.interpreter.setOut(p2);
+print(output);
 
 
 
