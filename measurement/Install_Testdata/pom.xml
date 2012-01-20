@@ -7,7 +7,11 @@
 	<packaging>pom</packaging>
 	<name>eSciDoc Performance Measurement - Install Testdata</name>
 	<description>Test Core Performance</description>
-	
+	<parent>
+		<groupId>org.escidoc.core.performance</groupId>
+		<artifactId>measurement</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
  	
 	 <build>
      
@@ -17,21 +21,25 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
+				 <version>2.4</version>
 				
 				<executions>
 					<!-- kopieren des testdaten jars -->
 					<execution>
-						<id>copy testdaten</id>
+						<id>copy-dependencies</id>
 						<phase>pre-integration-test</phase>
 						<goals>
 							<goal>copy</goal>
 						</goals>
-						<configuration>
+						<configuration> 
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteReleases>true</overWriteReleases>
 							<artifactItems>
 								<artifactItem>
 									 <groupId>org.escidoc.core.performance</groupId>
 		   							 <artifactId>testdaten</artifactId>
-		    						 <version>0.1</version>
+		   							  <!-- Franks Testdaten -->
+  									  <version>1.0-SNAPSHOT</version>
 									 <overWrite>true</overWrite>
 									 <outputDirectory>${project.parent.basedir}/testdaten/daten</outputDirectory>
 									 <destFileName>testdaten-archive.jar</destFileName>
@@ -44,6 +52,7 @@
 				</executions>
 			</plugin>
 
+			<!-- testdaten extraction -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -52,7 +61,7 @@
 				</configuration>
 				
 				<executions>
-				<!-- testdaten extraction -->
+				
 					<execution>
 						<id>extract-testdaten</id>
 						<phase>pre-integration-test</phase>
@@ -78,10 +87,6 @@
 	</build>
 
 		
-	<parent>
-		<groupId>org.escidoc.core.performance</groupId>
-		<artifactId>measurement</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+	
 
 </project>

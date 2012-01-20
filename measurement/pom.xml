@@ -139,6 +139,12 @@
 		    <artifactId>ApacheJMeter_mail</artifactId>
 		    <version>2.4</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.escidoc.core.performance</groupId>
+		   	<artifactId>testdaten</artifactId>
+  			<version>1.0-SNAPSHOT</version>
+  		</dependency>							  
 	 	
     </dependencies> 
   
@@ -330,7 +336,7 @@
 			<id>org.escidoc.core</id>
 			<url>https://www.escidoc.org/artifactory/repo</url>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 		</repository>
 
