@@ -205,45 +205,53 @@ InputStream bais = new ByteArrayInputStream(output.getBytes());
  if (objectType.equals("item")) {
    	module="item";
  } 
-// raussschreiben der objects id für die update um die Testdaten zu aktualisieren.
-f = new FileOutputStream(filename,true);
-p = new PrintStream(f);
-this.interpreter.setOut(p);
-print(lastmoddate + "," + objectType + "," + objectId + "," + props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml");
 
 
 
-filename1=props.get("basedir") + "/testdaten/config/testdaten_"+ objectType +".csv";
-if (thread == 0) {
-  f1 = new FileOutputStream(filename1,false);
+if (props.get("basedir") != null && props.get("basedir") != "") {
+	
+	// raussschreiben der objects id für die update um die Testdaten zu aktualisieren.
+	f = new FileOutputStream(filename,true);
+	p = new PrintStream(f);
+	this.interpreter.setOut(p);
+	print(lastmoddate + "," + objectType + "," + objectId + "," + props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml");
+	
+	filename1=props.get("basedir") + "/testdaten/config/testdaten_"+ objectType +".csv";
+	if (thread == 0) {
+	  f1 = new FileOutputStream(filename1,false);
+	} else { 
+	  f1 = new FileOutputStream(filename1,true);	
+	}
+	p1 = new PrintStream(f1);
+	this.interpreter.setOut(p1);
+	print(objectId);
+
+	// rausschreiben der Responses
+	if (thread > -1 ) { 		    
+	filename2=props.get("basedir") + "/testdaten/response/" + objectId  + ".xml";
+	//print("Objects filename " + filename2);
+	}
+	f2 = new FileOutputStream(filename2,false);
+	p2 = new PrintStream(f2);
+	this.interpreter.setOut(p2);
+	print(output);
+
+	// rausschreiben der testdaten.csv datei für das Update
+	filename3=props.get("basedir") + "/testdaten/config/update_testdaten_"+ objectType +".csv";
+	if (thread == 0) {
+	  f3 = new FileOutputStream(filename3,false);
+	} else { 
+	  f3 = new FileOutputStream(filename3,true);	
+	}
+	p3 = new PrintStream(f3);
+	this.interpreter.setOut(p3);
+	print(props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml" + "," + objectId + ",text/xml" );
+
 } else { 
-  f1 = new FileOutputStream(filename1,true);	
+	
+	print("basedir is empty");
+	
 }
-p1 = new PrintStream(f1);
-this.interpreter.setOut(p1);
-print(objectId);
-
-// rausschreiben der Responses
-if (thread > -1 ) { 		    
-filename2=props.get("basedir") + "/testdaten/response/" + objectId  + ".xml";
-//print("Objects filename " + filename2);
-}
-f2 = new FileOutputStream(filename2,false);
-p2 = new PrintStream(f2);
-this.interpreter.setOut(p2);
-print(output);
-
-// rausschreiben der testdaten.csv datei für das Update
-filename3=props.get("basedir") + "/testdaten/config/update_testdaten_"+ objectType +".csv";
-if (thread == 0) {
-  f3 = new FileOutputStream(filename3,false);
-} else { 
-  f3 = new FileOutputStream(filename3,true);	
-}
-p3 = new PrintStream(f3);
-this.interpreter.setOut(p3);
-print(props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml" + "," + objectId + ",text/xml" );
-
 
 
 
