@@ -19,13 +19,22 @@
 			A Context has to exist before you can create an Item. 
 			The Item has to reference one Context. 
 		-->
-		<srel:context xlink:href="/ir/context/escidoc:1001" />
+		<!-- fuer 1.3 -->
+		<!-- srel:context xlink:href="/ir/context/escidoc:1001" / -->
+		
+		<!-- fuer 1.4 -->
+		<srel:context xlink:href="/ir/context/escidoc:2" />
+		
 
 		<!-- 
 			Each Item has to reference a content model. The content 
 			model has to exist before you can reference it.
 		-->
-		<srel:content-model xlink:href="/cmm/content-model/escidoc:2001" />
+		<!-- fuer 1.3 -->
+		<!-- srel:content-model xlink:href="/cmm/content-model/escidoc:2001" / -->
+		
+		<!-- fuer 1.4 -->
+		<srel:content-model xlink:href="/cmm/content-model/escidoc:3" />
 
 		<!-- 
 			The content model specific section has to be part of the 

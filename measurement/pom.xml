@@ -37,11 +37,11 @@
 	  <module>Retrieve_OrganizationalUnit</module>
 	  <module>Retrieve_ContentRelation</module>
 	  
-	  <!-- module>Update_ContentModel</module>
+	  <module>Update_ContentModel</module>
 	  <module>Update_ContentRelation</module>
 	  <module>Update_Context</module>
 	  <module>Update_OrganizationalUnit</module>
-	  <module>Update_item</module -->
+	  <module>Update_item</module>
   </modules>  
   
   <properties>

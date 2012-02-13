@@ -13,8 +13,13 @@
 
 	<escidocContentRelation:type>http://www.escidoc.de/ontologies/mpdl-ontologies/content-relations#hasPart</escidocContentRelation:type>
 
-	<escidocContentRelation:subject xlink:href="/ir/context/escidoc:1001" />
-	<escidocContentRelation:object xlink:href="/ir/item/escidoc:1004:1" />
+    <!-- 1.3 -->
+	<!-- escidocContentRelation:subject xlink:href="/ir/context/escidoc:1001" />
+	<escidocContentRelation:object xlink:href="/ir/item/escidoc:1004:1" / -->
+	
+	<!-- 1.4 -->
+	<escidocContentRelation:subject xlink:href="/ir/context/escidoc:2" />
+	<escidocContentRelation:object xlink:href="/ir/item/escidoc:6:1" />
 
 	<md-records:md-records>
 		<md-records:md-record name="escidoc"><bla/></md-records:md-record>

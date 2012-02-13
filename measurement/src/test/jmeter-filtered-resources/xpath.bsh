@@ -209,7 +209,7 @@ InputStream bais = new ByteArrayInputStream(output.getBytes());
 f = new FileOutputStream(filename,true);
 p = new PrintStream(f);
 this.interpreter.setOut(p);
-print(lastmoddate + "," + objectType + "," + objectId + "," + props.get("basedir") + "/testdaten/response/" +  objectId  + ".hxml");
+print(lastmoddate + "," + objectType + "," + objectId + "," + props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml");
 
 
 
@@ -223,15 +223,26 @@ p1 = new PrintStream(f1);
 this.interpreter.setOut(p1);
 print(objectId);
 
-// rausschreiben der Repsonses
+// rausschreiben der Responses
 if (thread > -1 ) { 		    
-filename2=props.get("basedir") + "/testdaten/response/" + objectId  + ".hxml";
+filename2=props.get("basedir") + "/testdaten/response/" + objectId  + ".xml";
 //print("Objects filename " + filename2);
 }
 f2 = new FileOutputStream(filename2,false);
 p2 = new PrintStream(f2);
 this.interpreter.setOut(p2);
 print(output);
+
+// rausschreiben der testdaten.csv datei für das Update
+filename3=props.get("basedir") + "/testdaten/config/update_testdaten_"+ objectType +".csv";
+if (thread == 0) {
+  f3 = new FileOutputStream(filename3,false);
+} else { 
+  f3 = new FileOutputStream(filename3,true);	
+}
+p3 = new PrintStream(f3);
+this.interpreter.setOut(p3);
+print(props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml" + "," + objectId + ",text/xml" );
 
 
 
