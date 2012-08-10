@@ -11,10 +11,10 @@
 		<system>Jira</system>
 		<url>https://www.escidoc.org/jira/browse/INFR</url>
 	</issueManagement>
-	<ciManagement>
+	<!-- ciManagement>
 		<system>Hudson</system>
 		<url>http://escidev2.fiz-karlsruhe.de:8484/job/eSciDoc%20Measurement/</url>
-	</ciManagement>
+	</ciManagement -->
 
 	<organization>
 		<name>FIZ Karlsruhe</name>
@@ -160,12 +160,19 @@
 		<dependency>
 			<groupId>org.escidoc.core.performance</groupId>
 		   	<artifactId>testdaten</artifactId>
-		   	<!-- Testdaten original -->
-  			<version>1.0-SNAPSHOT</version>
-  			<!--  version>1.3-SNAPSHOT</version -->
-  			<!-- version>1.4-SNAPSHOT</version -->
-  			<!-- version>trunk-SNAPSHOT</version -->
-  			
+  			<version>1.3-SNAPSHOT</version>
+  		</dependency>
+  		
+  		<dependency>
+			<groupId>org.escidoc.core.performance</groupId>
+		   	<artifactId>testdaten</artifactId>
+  			<version>1.4-SNAPSHOT</version>
+  		</dependency>
+  		
+  		<dependency>
+			<groupId>org.escidoc.core.performance</groupId>
+		   	<artifactId>testdaten</artifactId>
+  			<version>trunk-SNAPSHOT</version>
   		</dependency>							  
 	 	
     </dependencies> 
