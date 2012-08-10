@@ -56,12 +56,18 @@
 		<!--  die version wird in den Profilen gesetzt -->
 		<escidoc.core.version>${escidocVersion}</escidoc.core.version>
 		<escidoc.installer.config>escidoc-core-installer-config.xml</escidoc.installer.config>
+		<escidoc.artifact.classifier>${artifact.classifier}</escidoc.artifact.classifier>
+		<escidoc.server.jboss>${skip.server.jboss}</escidoc.server.jboss>
+		<escidoc.server.tomcat>${skip.server.tomcat}</escidoc.server.tomcat>
+		
 
 		<!-- for test installation -->
 		<escidoc.database.host>localhost</escidoc.database.host>
 		<escidoc.database.port>5432</escidoc.database.port>
 		<escidoc.database.user>escidoc</escidoc.database.user>
 		<escidoc.database.password>escidoc</escidoc.database.password>
+		<escidoc.postgres.database.admin.user>postgres</escidoc.postgres.database.admin.user>
+        <escidoc.postgres.database.admin.password>postgres</escidoc.postgres.database.admin.password>
 
 		<!-- Administrator Login Detail for eSciDoc -->
 		<escidoc.admin.user>sysadmin</escidoc.admin.user>
@@ -75,6 +81,29 @@
 
 		<fedora.database.user>fedoraAdmin</fedora.database.user>
 		<fedora.database.password>fedoraAdmin</fedora.database.password>
+		
+		<oaiprovider.database.user>sysadmin</oaiprovider.database.user>
+		<oaiprovider.database.password>esciDoc</oaiprovider.database.password>
+		
+		<!--  Testdaten default (versions spezifisch wird in den Profilen gesetzt -->
+		<test.daten>${testdaten}</test.daten>
+		
+		<!--  REST API (used in testplan.properties) -->
+		<api.itempath>${api_itempath}</api.itempath>
+		<api.crpath>${api_crpath}</api.crpath>
+		<api.cmpath>${api_cmpath}</api.cmpath>
+		<api.contextpath>${api_contextpath}</api.contextpath>
+		<api.oupath>${api_oupath}</api.oupath>
+		<api.loginpath>${api_loginpath}</api.loginpath>
+		<api.loginaction>${api_loginaction}</api.loginaction>
+		<api.logintarget>${api_logintarget}</api.logintarget>
+		<api.loadexamples>${api_loadexamples}</api.loadexamples>
+		
+		<!--  JMETER Threads -->
+		<jmeter.threads>9</jmeter.threads>
+		<jmeter.retrieve.threads>8</jmeter.retrieve.threads>
+		<jmeter.update.threads>8</jmeter.update.threads>
+		<jmeter.rampup>18</jmeter.rampup>
 
 	</properties> 
 	
@@ -82,68 +111,61 @@
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_core</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_components</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_functions</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_http</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_java</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_reports</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_tcp</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_ftp</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_jdbc</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_jms</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_ldap</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.jmeter</groupId>
 		    <artifactId>ApacheJMeter_mail</artifactId>
-		    <version>2.4</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.escidoc.core.performance</groupId>
 		   	<artifactId>testdaten</artifactId>
+		   	<!-- Testdaten original -->
   			<version>1.0-SNAPSHOT</version>
+  			<!--  version>1.3-SNAPSHOT</version -->
+  			<!-- version>1.4-SNAPSHOT</version -->
+  			<!-- version>trunk-SNAPSHOT</version -->
+  			
   		</dependency>							  
 	 	
     </dependencies> 
@@ -152,8 +174,6 @@
   
   
   <profiles>
-  
-	    
 	    <profile>
 	      <id>skip_escidoc_install_13</id>
 	      <activation>
@@ -167,9 +187,166 @@
 			<skip.install.first>true</skip.install.first>
 			<skip.install.testdata>false</skip.install.testdata>
 			<skipServer>false</skipServer>
-			<escidocVersion>1.3.2</escidocVersion>
+			<skip.server.jboss>false</skip.server.jboss>
+			<skip.server.tomcat>true</skip.server.tomcat>
+			<escidocVersion>1.3.7-SNAPSHOT</escidocVersion>
+			<artifact.classifier>standard</artifact.classifier>
+			<escidoc.installer.config>escidoc-core-installer-config-13.xml</escidoc.installer.config>
+			<testdaten>1.3-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/ir/item</api_itempath>
+			<api_cmpath>/cmm/content-model</api_cmpath>
+			<api_crpath>/ir/content-relation</api_crpath>
+			<api_contextpath>/ir/context</api_contextpath>
+			<api_oupath>/oum/organizational-unit</api_oupath>
+		    <api_loginpath>/aa/login</api_loginpath>
+			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	      <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<skip>${skip.server.jboss}</skip>
+							<wait>false</wait>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skip.server.jboss}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>jboss42x</containerId>
+						<home>${target.home}/jboss</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<FEDORA_HOME>${target.home}/fedora</FEDORA_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>standalone</type>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+ 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
 	    </profile>
+	    <profile>
+	      <id>run_escidoc_install_13</id>
+	      <activation>
+			<property>
+			  <name>env</name>
+			  <value>install13</value>
+			</property>
+			<activeByDefault>true</activeByDefault>
+	      </activation>
+	      <properties>
+	      	<skip.install.first>true</skip.install.first>
+	      	<skip.install.testdata>false</skip.install.testdata>
+			<skipITs>false</skipITs>
+			<skipServer>false</skipServer>
+			<skip.server.jboss>false</skip.server.jboss>
+			<skip.server.tomcat>true</skip.server.tomcat>
+			<escidocVersion>1.3.7-SNAPSHOT</escidocVersion>
+			<artifact.classifier>standard</artifact.classifier>
+			<escidoc.installer.config>escidoc-core-installer-config-13.xml</escidoc.installer.config>
+			<testdaten>1.3-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/ir/item</api_itempath>
+			<api_cmpath>/cmm/content-model</api_cmpath>
+			<api_crpath>/ir/content-relation</api_crpath>
+			<api_contextpath>/ir/context</api_contextpath>
+			<api_oupath>/oum/organizational-unit</api_oupath>
+		    <api_loginpath>/aa/login</api_loginpath>
+			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
+	      </properties>
+	        <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<skip>${skip.server.jboss}</skip>
+							<wait>false</wait>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skip.server.jboss}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>jboss42x</containerId>
+						<home>${target.home}/jboss</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<FEDORA_HOME>${target.home}/fedora</FEDORA_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>standalone</type>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+ 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
+	   </profile>	
 	    
 	    <profile>
 	      <id>skip_escidoc_install_14</id>
@@ -184,12 +361,79 @@
 			<skip.install.first>true</skip.install.first>
 			<skip.install.testdata>false</skip.install.testdata>
 			<skipServer>false</skipServer>
-			<escidocVersion>1.4</escidocVersion>
+			<skip.server.jboss>false</skip.server.jboss>
+			<skip.server.tomcat>true</skip.server.tomcat>
+			<escidocVersion>1.4.4-SNAPSHOT</escidocVersion>
+			<artifact.classifier></artifact.classifier>
 			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
+			<testdaten>1.4-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/ir/item</api_itempath>
+			<api_cmpath>/cmm/content-model</api_cmpath>
+			<api_crpath>/ir/content-relation</api_crpath>
+			<api_contextpath>/ir/context</api_contextpath>
+			<api_oupath>/oum/organizational-unit</api_oupath>
+		    <api_loginpath>/aa/login</api_loginpath>
+			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	      	        <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<wait>false</wait>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skipServer}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>jboss42x</containerId>
+						<home>${target.home}/jboss</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<FEDORA_HOME>${target.home}/fedora</FEDORA_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>standalone</type>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+ 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
 	    </profile>
-
-	   <profile>
+	    <profile>
 	      <id>run_escidoc_install_14</id>
 	      <activation>
 			<property>
@@ -202,28 +446,259 @@
 	      	<skip.install.testdata>false</skip.install.testdata>
 			<skipITs>false</skipITs>
 			<skipServer>false</skipServer>
-			<escidocVersion>1.4</escidocVersion>
+			<skip.server.jboss>false</skip.server.jboss>
+			<skip.server.tomcat>true</skip.server.tomcat>
+			<escidocVersion>1.4.4-SNAPSHOT</escidocVersion>
+			<artifact.classifier></artifact.classifier>
 			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
+			<testdaten>1.4-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/ir/item</api_itempath>
+			<api_cmpath>/cmm/content-model</api_cmpath>
+			<api_crpath>/ir/content-relation</api_crpath>
+			<api_contextpath>/ir/context</api_contextpath>
+			<api_oupath>/oum/organizational-unit</api_oupath>
+		    <api_loginpath>/aa/login</api_loginpath>
+			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	        <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<wait>false</wait>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skipServer}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>jboss42x</containerId>
+						<home>${target.home}/jboss</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<FEDORA_HOME>${target.home}/fedora</FEDORA_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>standalone</type>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+ 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
 	    </profile>	
 	    
-	   <profile>
-	      <id>run_escidoc_install_13</id>
+	     <profile>
+	      <id>skip_escidoc_install_trunk</id>
 	      <activation>
 			<property>
 			  <name>env</name>
-			  <value>install13</value>
+			  <value>skiptrunk</value>
 			</property>
-			<activeByDefault>true</activeByDefault>
+	      </activation>
+	      <properties>
+			<skipITs>true</skipITs>
+			<skip.install.first>true</skip.install.first>
+			<skip.install.testdata>false</skip.install.testdata>
+			<skipServer>true</skipServer>
+			<skip.server.jboss>true</skip.server.jboss>
+			<skip.server.tomcat>false</skip.server.tomcat>
+			<escidocVersion>trunk-SNAPSHOT</escidocVersion>
+			<artifact.classifier></artifact.classifier>
+			<escidoc.installer.config>escidoc-core-installer-config-trunk.xml</escidoc.installer.config>
+			<testdaten>trunk-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/escidoc/ir/item</api_itempath>
+			<api_cmpath>/escidoc/cmm/content-model</api_cmpath>
+			<api_crpath>/escidoc/ir/content-relation</api_crpath>
+			<api_contextpath>/escidoc/ir/context</api_contextpath>
+			<api_oupath>/escidoc/oum/organizational-unit</api_oupath>
+		    <api_loginpath>/escidoc/aa/login/database</api_loginpath>
+			<api_loginaction>/escidoc/aa/database/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/escidoc/adm/admin/load-examples/common</api_loadexamples>
+	      </properties>
+	      
+	       <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<wait>false</wait>
+							<skip>${skip.server.tomcat}</skip>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skip.server.tomcat}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>tomcat6x</containerId>
+						<home>${target.home}/tomcat</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<ESCIDOC_HOME>${target.home}</ESCIDOC_HOME>
+							<CATALINA_HOME>${target.home}/tomcat</CATALINA_HOME>
+							<!-- CATALINA_OPTS>-XX:PermSize=512m -XX:MaxPermSize=1024</CATALINA_OPTS -->
+							<!--  JAVA_OPTS>-Xms512m -Xmx1024m -XX:PermSize=512m -XX:MaxPermSize=1024</JAVA_OPTS -->
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>${target.home}/tomcat</home>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+	 						<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs>
+ 						</properties> 
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
+	      
+	    </profile>
+	    <profile>
+	      <id>run_escidoc_install_trunk</id>
+	      <activation>
+			<property>
+			  <name>env</name>
+			  <value>installtrunk</value>
+			</property>
 	      </activation>
 	      <properties>
 	      	<skip.install.first>true</skip.install.first>
 	      	<skip.install.testdata>false</skip.install.testdata>
 			<skipITs>false</skipITs>
-			<skipServer>false</skipServer>
-			<escidocVersion>1.3.2</escidocVersion>
+			<skipServer>true</skipServer>
+			<skip.server.jboss>true</skip.server.jboss>
+			<skip.server.tomcat>false</skip.server.tomcat>
+			<escidocVersion>trunk-SNAPSHOT</escidocVersion>
+			<artifact.classifier></artifact.classifier>
+			<escidoc.installer.config>escidoc-core-installer-config-trunk.xml</escidoc.installer.config>
+			<testdaten>trunk-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/escidoc/ir/item</api_itempath>
+			<api_cmpath>/escidoc/cmm/content-model</api_cmpath>
+			<api_crpath>/escidoc/ir/content-relation</api_crpath>
+			<api_contextpath>/escidoc/ir/context</api_contextpath>
+			<api_oupath>/escidoc/oum/organizational-unit</api_oupath>
+		    <api_loginpath>/escidoc/aa/login/database</api_loginpath>
+			<api_loginaction>/escidoc/aa/database/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/escidoc/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
-	   </profile>	
+	          <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<wait>false</wait>
+							<skip>${skip.server.tomcat}</skip>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skip.server.tomcat}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>tomcat6x</containerId>
+						<home>${target.home}/tomcat</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<ESCIDOC_HOME>${target.home}</ESCIDOC_HOME>
+							<CATALINA_HOME>${target.home}/tomcat</CATALINA_HOME>
+							<CATALINA_OPTS>-XX:PermSize=512m -XX:MaxPermSize=1024</CATALINA_OPTS>
+							<!--  JAVA_OPTS>-Xms512m -Xmx1024m -XX:PermSize=512m -XX:MaxPermSize=1024</JAVA_OPTS -->
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>${target.home}/tomcat</home>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+	 						<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs>
+ 						</properties> 
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
+	    </profile>	
 	   
 	   <profile>
 	      <id>escidoc_local</id>
@@ -252,7 +727,7 @@
 			<target.home>${project.parent.basedir}/${install.home}</target.home>
 	      </properties>
 	   </profile>	
-	    
+
     </profiles>
       
     <build>
@@ -359,4 +834,68 @@
 	</repositories>
 
  
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_core</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_components</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_functions</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_http</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_java</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_reports</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_tcp</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_ftp</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_jdbc</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_jms</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_ldap</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>ApacheJMeter_mail</artifactId>
+				<version>2.4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

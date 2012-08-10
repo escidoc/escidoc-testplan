@@ -103,6 +103,11 @@
             <stringProp name="Argument.value">${__property(loginreportdir,report.jtl)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="LOADEXAMPLES" elementType="Argument">
+            <stringProp name="Argument.name">LOADEXAMPLES</stringProp>
+            <stringProp name="Argument.value">${__property(loadexamples,report.jtl)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -339,7 +344,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/adm/admin/load-examples/common</stringProp>
+            <stringProp name="HTTPSampler.path">${LOADEXAMPLES}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

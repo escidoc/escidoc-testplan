@@ -79,7 +79,7 @@
 									<groupId>org.escidoc.core</groupId>
 									<artifactId>installer</artifactId>
 									<version>${escidoc.core.version}</version>
-									<!-- classifier>standard</classifier -->
+									<classifier>${artifact.classifier}</classifier>
 									<overWrite>false</overWrite>
 									<outputDirectory>${target.home}</outputDirectory>
 									<destFileName>escidoc-installer.jar</destFileName>
@@ -135,55 +135,12 @@
 				</executions>
 			</plugin>
 
-			<!-- starten und stoppen von JBOSS -->
+			<!-- starten und stoppen von JBOSS (escidoc version <= 1.4) oder Tomcat-->
+			<!-- über PluginManagement des profiles im parent pom wird die configuration vererbt -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>start-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<wait>false</wait>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-container</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<skip>${skipServer}</skip>
-					<wait>${cargo.wait}</wait>
-					<container>
-						<containerId>jboss42x</containerId>
-						<home>${target.home}/jboss</home>
-						<timeout>600000</timeout>
-						<systemProperties>
-							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
-						</systemProperties>
-					</container>
-					<configuration>
-						<type>standalone</type>
-						<properties>
-							<cargo.hostname>localhost</cargo.hostname>
-							<cargo.protocol>http</cargo.protocol>
-							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
-							<cargo.rmi.port>1099</cargo.rmi.port>
-							<cargo.logging>medium</cargo.logging>
- 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
-						</properties>
-					</configuration>
-				</configuration>
 			</plugin>
-		
-     
      
      
      
@@ -199,7 +156,7 @@
 							<goal>jmeter</goal>
 						</goals>
 						<configuration>
-							<reportDir>${project.build.directory}/jmeter-reports</reportDir>
+							<reportDir>${project.build.directory}/jmeter-reports-maven</reportDir>
 							<workDir>${project.build.directory}/jmeter</workDir>
 							<userDir>${basedir}</userDir>
 							<jmeterLogLevel>DEBUG</jmeterLogLevel>
@@ -209,6 +166,8 @@
 							<jmeterCustomPropertiesFile>
 								${project.build.directory}/testplan.properties
 							</jmeterCustomPropertiesFile>
+							<jmeterIgnoreError>true</jmeterIgnoreError>
+							<jmeterIgnoreFailure>true</jmeterIgnoreFailure>
 						</configuration>
 					</execution>
 				</executions>

@@ -39,7 +39,7 @@
 									 <groupId>org.escidoc.core.performance</groupId>
 		   							 <artifactId>testdaten</artifactId>
 		   							  <!-- Franks Testdaten -->
-  									  <version>1.0-SNAPSHOT</version>
+  									  <version>${testdaten}</version>
 									 <overWrite>true</overWrite>
 									 <outputDirectory>${project.parent.basedir}/testdaten/daten</outputDirectory>
 									 <destFileName>testdaten-archive.jar</destFileName>
