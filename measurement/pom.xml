@@ -21,7 +21,7 @@
 		<url>http://www.fiz-karlsruhe.de</url>
 	</organization>
 	
-	<modules>
+	<!-- modules>
 	  <module>Install_Testdata</module>
 	  <module>Install_Escidoc_First</module>
 	  
@@ -42,7 +42,7 @@
 	  <module>Update_Context</module>
 	  <module>Update_OrganizationalUnit</module>
 	  <module>Update_item</module>
-  </modules>  
+  </modules -->  
   
   <properties>
 
@@ -211,6 +211,28 @@
 			<api_logintarget>/AdminTool</api_logintarget>
 			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_item</module>
+			  <module>Create_ContentModel</module>
+			  <module>Create_ContentRelation</module>
+			  <module>Create_Context</module>
+			  <module>Create_OrganizationalUnit</module>
+			
+			  <module>Retrieve_item</module>
+			  <module>Retrieve_ContentModel</module>
+			  <module>Retrieve_Context</module>
+			  <module>Retrieve_OrganizationalUnit</module>
+			  <module>Retrieve_ContentRelation</module>
+			  
+			  <module>Update_ContentModel</module>
+			  <module>Update_ContentRelation</module>
+			  <module>Update_Context</module>
+			  <module>Update_OrganizationalUnit</module>
+			  <module>Update_item</module>
+  		  </modules>  
 	      <build>
 	      <pluginManagement>
 	      <plugins>
@@ -298,6 +320,28 @@
 			<api_logintarget>/AdminTool</api_logintarget>
 			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_item</module>
+			  <module>Create_ContentModel</module>
+			  <module>Create_ContentRelation</module>
+			  <module>Create_Context</module>
+			  <module>Create_OrganizationalUnit</module>
+			
+			  <module>Retrieve_item</module>
+			  <module>Retrieve_ContentModel</module>
+			  <module>Retrieve_Context</module>
+			  <module>Retrieve_OrganizationalUnit</module>
+			  <module>Retrieve_ContentRelation</module>
+			  
+			  <module>Update_ContentModel</module>
+			  <module>Update_ContentRelation</module>
+			  <module>Update_Context</module>
+			  <module>Update_OrganizationalUnit</module>
+			  <module>Update_item</module>
+  		  </modules>  
 	        <build>
 	      <pluginManagement>
 	      <plugins>
@@ -385,7 +429,29 @@
 			<api_logintarget>/AdminTool</api_logintarget>
 			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
-	      	        <build>
+	      <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_item</module>
+			  <module>Create_ContentModel</module>
+			  <module>Create_ContentRelation</module>
+			  <module>Create_Context</module>
+			  <module>Create_OrganizationalUnit</module>
+			
+			  <module>Retrieve_item</module>
+			  <module>Retrieve_ContentModel</module>
+			  <module>Retrieve_Context</module>
+			  <module>Retrieve_OrganizationalUnit</module>
+			  <module>Retrieve_ContentRelation</module>
+			  
+			  <module>Update_ContentModel</module>
+			  <module>Update_ContentRelation</module>
+			  <module>Update_Context</module>
+			  <module>Update_OrganizationalUnit</module>
+			  <module>Update_item</module>
+  		  </modules>  
+	      <build>
 	      <pluginManagement>
 	      <plugins>
 	      <plugin>
@@ -470,6 +536,28 @@
 			<api_logintarget>/AdminTool</api_logintarget>
 			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_item</module>
+			  <module>Create_ContentModel</module>
+			  <module>Create_ContentRelation</module>
+			  <module>Create_Context</module>
+			  <module>Create_OrganizationalUnit</module>
+			
+			  <module>Retrieve_item</module>
+			  <module>Retrieve_ContentModel</module>
+			  <module>Retrieve_Context</module>
+			  <module>Retrieve_OrganizationalUnit</module>
+			  <module>Retrieve_ContentRelation</module>
+			  
+			  <module>Update_ContentModel</module>
+			  <module>Update_ContentRelation</module>
+			  <module>Update_Context</module>
+			  <module>Update_OrganizationalUnit</module>
+			  <module>Update_item</module>
+  		  </modules>  
 	        <build>
 	      <pluginManagement>
 	      <plugins>
@@ -556,7 +644,28 @@
 			<api_logintarget>/AdminTool</api_logintarget>
 			<api_loadexamples>/escidoc/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
-	      
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_item</module>
+			  <module>Create_ContentModel</module>
+			  <module>Create_ContentRelation</module>
+			  <module>Create_Context</module>
+			  <module>Create_OrganizationalUnit</module>
+			
+			  <module>Retrieve_item</module>
+			  <module>Retrieve_ContentModel</module>
+			  <module>Retrieve_Context</module>
+			  <module>Retrieve_OrganizationalUnit</module>
+			  <module>Retrieve_ContentRelation</module>
+			  
+			  <module>Update_ContentModel</module>
+			  <module>Update_ContentRelation</module>
+			  <module>Update_Context</module>
+			  <module>Update_OrganizationalUnit</module>
+			  <module>Update_item</module>
+  		  </modules>  
 	       <build>
 	      <pluginManagement>
 	      <plugins>
@@ -647,6 +756,28 @@
 			<api_logintarget>/AdminTool</api_logintarget>
 			<api_loadexamples>/escidoc/adm/admin/load-examples/common</api_loadexamples>
 	      </properties>
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_item</module>
+			  <module>Create_ContentModel</module>
+			  <module>Create_ContentRelation</module>
+			  <module>Create_Context</module>
+			  <module>Create_OrganizationalUnit</module>
+			
+			  <module>Retrieve_item</module>
+			  <module>Retrieve_ContentModel</module>
+			  <module>Retrieve_Context</module>
+			  <module>Retrieve_OrganizationalUnit</module>
+			  <module>Retrieve_ContentRelation</module>
+			  
+			  <module>Update_ContentModel</module>
+			  <module>Update_ContentRelation</module>
+			  <module>Update_Context</module>
+			  <module>Update_OrganizationalUnit</module>
+			  <module>Update_item</module>
+  		  </modules>  
 	          <build>
 	      <pluginManagement>
 	      <plugins>
@@ -706,6 +837,185 @@
 	      </pluginManagement>
 	      </build>
 	    </profile>	
+
+
+	    <profile>
+	      <id>skip_escidoc_install_scape_14</id>
+	      <activation>
+			<property>
+			  <name>env</name>
+			  <value>skip14</value>
+			</property>
+	      </activation>
+	      <properties>
+			<skipITs>true</skipITs>
+			<skip.install.first>true</skip.install.first>
+			<skip.install.testdata>false</skip.install.testdata>
+			<skipServer>false</skipServer>
+			<skip.server.jboss>false</skip.server.jboss>
+			<skip.server.tomcat>true</skip.server.tomcat>
+			<escidocVersion>1.4.4-SCAPE-SNAPSHOT</escidocVersion>
+			<artifact.classifier></artifact.classifier>
+			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
+			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/scape/entity</api_itempath>
+		    <api_loginpath>/aa/login</api_loginpath>
+			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
+	      </properties>
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  <module>Create_IntellectualEntity</module>
+  		  </modules>  
+	      <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<wait>false</wait>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skipServer}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>jboss42x</containerId>
+						<home>${target.home}/jboss</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<FEDORA_HOME>${target.home}/fedora</FEDORA_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>standalone</type>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+ 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
+	    </profile>
+	    <profile>
+	      <id>run_escidoc_install_scape_14</id>
+	      <activation>
+			<property>
+			  <name>env</name>
+			  <value>install14</value>
+			</property>
+	      </activation>
+	      <properties>
+	      	<skip.install.first>true</skip.install.first>
+	      	<skip.install.testdata>false</skip.install.testdata>
+			<skipITs>false</skipITs>
+			<skipServer>false</skipServer>
+			<skip.server.jboss>false</skip.server.jboss>
+			<skip.server.tomcat>true</skip.server.tomcat>
+			<escidocVersion>1.4.4-SCAPE-SNAPSHOT</escidocVersion>
+			<artifact.classifier></artifact.classifier>
+			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
+			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
+			<!-- Rest API -->
+			<api_itempath>/scape/entity</api_itempath>
+		    <api_loginpath>/aa/login</api_loginpath>
+			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
+			<api_logintarget>/AdminTool</api_logintarget>
+			<api_loadexamples>/adm/admin/load-examples/common</api_loadexamples>
+	      </properties>
+	       <modules>
+			  <module>Install_Testdata</module>
+			  <module>Install_Escidoc_First</module>
+			  
+			  <module>Create_IntellectualEntity</module>
+  		  </modules>  
+	        <build>
+	      <pluginManagement>
+	      <plugins>
+	      <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.2.2</version>
+				<executions>
+					<execution>
+						<id>start-container</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<wait>false</wait>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-container</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>${skipServer}</skip>
+					<wait>${cargo.wait}</wait>
+					<container>
+						<containerId>jboss42x</containerId>
+						<home>${target.home}/jboss</home>
+						<timeout>900000</timeout>
+						<systemProperties>
+							<FEDORA_HOME>${target.home}/fedora</FEDORA_HOME>
+							<ESCIDOC_HOME>${target.home}/core</ESCIDOC_HOME>
+						</systemProperties>
+					</container>
+					<configuration>
+						<type>standalone</type>
+						<properties>
+							<cargo.hostname>localhost</cargo.hostname>
+							<cargo.protocol>http</cargo.protocol>
+							<cargo.servlet.port>${escidoc.server.port}</cargo.servlet.port>
+							<cargo.rmi.port>1099</cargo.rmi.port>
+							<cargo.logging>medium</cargo.logging>
+ 							<cargo.jvmargs>-XX:PermSize=512m -XX:MaxPermSize=1024</cargo.jvmargs> 
+						</properties>
+					</configuration>
+				</configuration>
+			</plugin>
+	      </plugins>
+	      </pluginManagement>
+	      </build>
+	    </profile>	
+
+
+
+
 	   
 	   <profile>
 	      <id>escidoc_local</id>
