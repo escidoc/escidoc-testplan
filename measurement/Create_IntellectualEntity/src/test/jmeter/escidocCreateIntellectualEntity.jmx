@@ -433,7 +433,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="PUT ${PATH}" enabled="true">
+        <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="POST ${PATH}" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -444,7 +444,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${PATH}</stringProp>
-          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
