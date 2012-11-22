@@ -87,6 +87,7 @@
 		
 		<!--  Testdaten default (versions spezifisch wird in den Profilen gesetzt -->
 		<test.daten>${testdaten}</test.daten>
+		<purge.dir>org/escidoc/core/performance/testdaten</purge.dir>
 		
 		<!--  REST API (used in testplan.properties) -->
 		<api.itempath>${api_itempath}</api.itempath>
@@ -98,6 +99,9 @@
 		<api.loginaction>${api_loginaction}</api.loginaction>
 		<api.logintarget>${api_logintarget}</api.logintarget>
 		<api.loadexamples>${api_loadexamples}</api.loadexamples>
+		
+		<!-- CONNECTOR API (used in tesptlan.properties -->
+		<api.entitypath>${api_entitypath}</api.entitypath>
 		
 		<!--  JMETER Threads -->
 		<jmeter.threads>9</jmeter.threads>
@@ -173,7 +177,13 @@
 			<groupId>org.escidoc.core.performance</groupId>
 		   	<artifactId>testdaten</artifactId>
   			<version>trunk-SNAPSHOT</version>
-  		</dependency>							  
+  		</dependency>	
+  		
+  		<dependency>
+			<groupId>org.escidoc.core.performance</groupId>
+		   	<artifactId>testdaten</artifactId>
+  			<version>1.4-SCAPE-SNAPSHOT</version>
+  		</dependency>						  
 	 	
     </dependencies> 
   
@@ -860,6 +870,7 @@
 			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
 			<!-- Rest API -->
 			<api_itempath>/scape/entity</api_itempath>
+			<api_entitypath>/scape/entity-async</api_entitypath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
 			<api_logintarget>/AdminTool</api_logintarget>
@@ -869,6 +880,7 @@
 			  <module>Install_Testdata</module>
 			  <module>Install_Escidoc_First</module>
 			  <module>Create_IntellectualEntity</module>
+			  <module>Create_IntellectualEntityAsync</module>
   		  </modules>  
 	      <build>
 	      <pluginManagement>
@@ -946,6 +958,7 @@
 			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
 			<!-- Rest API -->
 			<api_itempath>/scape/entity</api_itempath>
+			<api_entitypath>/scape/entity-async</api_entitypath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
 			<api_logintarget>/AdminTool</api_logintarget>
@@ -953,9 +966,9 @@
 	      </properties>
 	       <modules>
 			  <module>Install_Testdata</module>
-			  <module>Install_Escidoc_First</module>
-			  
+			  <module>Install_Escidoc_First</module> 
 			  <module>Create_IntellectualEntity</module>
+			  <module>Create_IntellectualEntityAsync</module>
   		  </modules>  
 	        <build>
 	      <pluginManagement>
