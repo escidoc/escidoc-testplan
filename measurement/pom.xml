@@ -878,9 +878,9 @@
 	      </properties>
 	       <modules>
 			  <module>Install_Testdata</module>
-			  <module>Install_Escidoc_First</module>
+			  <!--  module>Install_Escidoc_First</module>
 			  <module>Create_IntellectualEntity</module>
-			  <module>Create_IntellectualEntityAsync</module>
+			  <module>Create_IntellectualEntityAsync</module -->
   		  </modules>  
 	      <build>
 	      <pluginManagement>
