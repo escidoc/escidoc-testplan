@@ -30,7 +30,7 @@
                            <configuration>
                              <tasks>
                                 <echo message="***REMOVING THE FOLLOWING DIRECTORY: ${settings.localRepository}/${purge.dir} ***"/>
-                                <!-- delete dir="${settings.localRepository}/${purge.dir}" / -->
+                                <delete dir="${settings.localRepository}/${purge.dir}" />
                               </tasks>
                             </configuration>
                         </execution>
