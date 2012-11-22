@@ -16,6 +16,26 @@
 	 <build>
      
      <plugins>
+   		<!--  löschen des lokalen maven repository eintrages der testdaten, da mvn -U nicht den aktuellen Snapshot holt -->
+          <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-antrun-plugin</artifactId>
+                   <executions>
+                       <execution>
+                          <id>purge-local-repo</id>
+                          <phase>validate</phase>
+                          <goals>
+                             <goal>run</goal>
+                           </goals>
+                           <configuration>
+                             <tasks>
+                                <echo message="***REMOVING THE FOLLOWING DIRECTORY: ${settings.localRepository}/${purge.dir} ***"/>
+                                <!-- delete dir="${settings.localRepository}/${purge.dir}" / -->
+                              </tasks>
+                            </configuration>
+                        </execution>
+                     </executions>
+           </plugin>
 
             <!-- installation von testdaten jar-->
 			<plugin>
