@@ -1,0 +1,149 @@
+import bsh.Interpreter;
+import java.io.IOException;
+import java.util.Iterator;
+
+import javax.xml.namespace.NamespaceContext;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import java.io.File;
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+
+/**
+ * Output a csv list with the last modified date, object type, object id and filename of the ingested xml. 
+ * 
+ * 
+ */
+// File to write to
+// create file only once (check if file exists, other create a new one)
+DateFormat fmt = new SimpleDateFormat("yyMMdd_HHmmss");
+int thread =  ctx.getThreadNum();
+
+
+//if (thread == 0) { 
+//	// leg eine neues File an, da neuer run
+//	filename=props.get("resultdir") + "/objects_" + fmt.format(new Date()) + ".csv";
+//} else { 
+//	// hole das neueste File
+//	File dir = new File(props.get("resultdir"));
+//	
+//	FilenameFilter filter = new FilenameFilter() {
+//	    public boolean accept(File dir, String name) {
+//		return name.contains("objects");
+//	    }
+//	};
+//	File[] files = dir.listFiles(filter);
+//	Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+//	filename = props.get("resultdir") + "/" + files[0].getName();
+//}
+
+
+
+//filename=props.get("resultdir");
+//print("Objects filename " + filename);
+print("threadNum " + ctx.getThreadNum()); 
+	
+
+//print("ctx filepath" + ctx.getVariables().get("filepath") );
+
+
+// Get Response Data
+output = ctx.getPreviousResult().getResponseDataAsString(); 
+InputStream bais = new ByteArrayInputStream(output.getBytes());
+
+
+// XPath output nach last-modification-date und der id und type durchsuchen. 
+InputStreamReader is = new InputStreamReader(bais);
+BufferedReader br = new BufferedReader(is);
+String read = null;
+StringBuffer sb = new StringBuffer();
+while((read = br.readLine()) != null) {
+   sb.append(read);
+}
+response = sb.toString();
+
+objectId="undefined";
+if (response != null) { 
+	String begin = "<scape:value>";
+	String end = "</scape:value>";
+	int beginIndex = response.indexOf(begin);
+	int endIndex = response.indexOf(end);
+	objectId = response.substring(beginIndex+begin.length(), endIndex); 
+}
+ 
+
+objectType="entity"; 
+    
+log.debug("Object Type: " + objectType); 
+log.debug("Object Id: " + objectId); 
+
+// End of Xpath stuff
+
+// Start IO
+		    
+ // rausschreiben der testdaten.csv Datei für die retrieves
+ 
+if (props.get("basedir") != null && props.get("basedir") != "") {
+	
+	// raussschreiben der objects id für die update um die Testdaten zu aktualisieren.
+//	f = new FileOutputStream(filename,true);
+//	p = new PrintStream(f);
+//	this.interpreter.setOut(p);
+//	print(objectType + "," + objectId + "," + props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml");
+	
+	filename1=props.get("basedir") + "/testdaten/config/testdaten_"+ objectType +".csv";
+	if (thread == 0) {
+	  f1 = new FileOutputStream(filename1,false);
+	} else { 
+	  f1 = new FileOutputStream(filename1,true);	
+	}
+	p1 = new PrintStream(f1);
+	this.interpreter.setOut(p1);
+	print(objectId);
+
+	// rausschreiben der Responses
+//	if (thread > -1 ) { 		    
+//	filename2=props.get("basedir") + "/testdaten/response/" + objectId  + ".xml";
+//	//print("Objects filename " + filename2);
+//	}
+//	f2 = new FileOutputStream(filename2,false);
+//	p2 = new PrintStream(f2);
+//	this.interpreter.setOut(p2);
+//	print(output);
+
+	// rausschreiben der testdaten.csv datei für das Update
+//	filename3=props.get("basedir") + "/testdaten/config/update_testdaten_"+ objectType +".csv";
+//	if (thread == 0) {
+//	  f3 = new FileOutputStream(filename3,false);
+//	} else { 
+//	  f3 = new FileOutputStream(filename3,true);	
+//	}
+//	p3 = new PrintStream(f3);
+//	this.interpreter.setOut(p3);
+//	print(props.get("basedir") + "/testdaten/response/" +  objectId  + ".xml" + "," + objectId + ",text/xml" );
+
+} else { 
+	
+	print("basedir is empty");
+	
+}
+
+
+
+
+
