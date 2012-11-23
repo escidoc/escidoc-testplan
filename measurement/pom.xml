@@ -870,6 +870,7 @@
 			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
 			<!-- Rest API -->
 			<api_itempath>/scape/entity</api_itempath>
+			<api_lifecyclepath>/scape/lifecycle</api_lifecyclepath>
 			<api_entitypath>/scape/entity-async</api_entitypath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
@@ -881,6 +882,7 @@
 			  <module>Install_Escidoc_First</module>
 			  <module>Create_IntellectualEntity</module>
 			  <module>Retrieve_Entity</module>
+			  <module>Retrieve_Lifecycle</module>
 			  <!-- module>Create_IntellectualEntityAsync</module -->
   		  </modules>  
 	      <build>
@@ -969,6 +971,8 @@
 			  <module>Install_Testdata</module>
 			  <module>Install_Escidoc_First</module> 
 			  <module>Create_IntellectualEntity</module>
+			  <module>Retrieve_Entity</module>
+			  <module>Retrieve_Lifecycle</module>
 			  <module>Create_IntellectualEntityAsync</module>
   		  </modules>  
 	        <build>
