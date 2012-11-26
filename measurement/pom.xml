@@ -883,7 +883,7 @@
 			  <module>Create_IntellectualEntity</module>
 			  <module>Retrieve_Entity</module>
 			  <module>Retrieve_Lifecycle</module>
-			  <!-- module>Create_IntellectualEntityAsync</module -->
+			  <module>Create_IntellectualEntityAsync</module>
   		  </modules>  
 	      <build>
 	      <pluginManagement>
