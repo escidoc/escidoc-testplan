@@ -102,7 +102,9 @@
 		
 		<!-- CONNECTOR API (used in tesptlan.properties -->
 		<api.entitypath>${api_entitypath}</api.entitypath>
-		
+		<api.entitylifecyclepath>${api_entitylifecyclepath}</api.entitylifecyclepath>
+		<api.entityasyncpath>${api_entityasyncpath}</api.entityasyncpath>
+		<api.reindexpath>${api_reindexpath}</api.reindexpath>
 		<!--  JMETER Threads -->
 		<jmeter.threads>9</jmeter.threads>
 		<jmeter.retrieve.threads>8</jmeter.retrieve.threads>
@@ -869,9 +871,10 @@
 			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
 			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
 			<!-- Rest API -->
-			<api_itempath>/scape/entity</api_itempath>
-			<api_lifecyclepath>/scape/lifecycle</api_lifecyclepath>
-			<api_entitypath>/scape/entity-async</api_entitypath>
+			<api_entitypath>/scape/entity</api_entitypath>
+			<api_entityasyncpath>/scape/entity-async</api_entityasyncpath>
+			<api_entitylifecyclepath>/scape/lifecycle</api_entitylifecyclepath>
+			<api_reindexpath>adm/admin/reindex/false/</api_reindexpath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
 			<api_logintarget>/AdminTool</api_logintarget>
@@ -924,7 +927,8 @@
 						</systemProperties>
 					</container>
 					<configuration>
-						<type>standalone</type>
+						<type>existing</type>
+						<home>${target.home}/jboss/server/default/</home>
 						<properties>
 							<cargo.hostname>localhost</cargo.hostname>
 							<cargo.protocol>http</cargo.protocol>
@@ -960,8 +964,9 @@
 			<escidoc.installer.config>escidoc-core-installer-config-14.xml</escidoc.installer.config>
 			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
 			<!-- Rest API -->
-			<api_itempath>/scape/entity</api_itempath>
-			<api_entitypath>/scape/entity-async</api_entitypath>
+			<api_entitypath>/scape/entity</api_entitypath>
+			<api_entityasyncpath>/scape/entity-async</api_entityasyncpath>
+			<api_entitylifecyclepath>/scape/lifecycle</api_entitylifecyclepath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
 			<api_logintarget>/AdminTool</api_logintarget>
@@ -1042,7 +1047,7 @@
 			  <name>env</name>
 			  <value>installlocal</value>
 			</property>
-			<activeByDefault>true</activeByDefault>
+			<activeByDefault>false</activeByDefault>
 	      </activation>
 	      <properties>
 			<target.home>${project.build.directory}/escidoc</target.home>
@@ -1056,6 +1061,7 @@
 			  <name>env</name>
 			  <value>installglobal</value>
 			</property>
+			<activeByDefault>true</activeByDefault>
 	      </activation>
 	      <properties>
 	      	<!-- von aussen setzen via -Dinstall.home=target/escidoc" -->

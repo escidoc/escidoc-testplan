@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="2.1">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="escidocRetrieveObject" enabled="true">
-      <stringProp name="TestPlan.comments">Retreive of an objects XML</stringProp>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="escidocCreateParallelThread" enabled="true">
+      <stringProp name="TestPlan.comments">CookieManager.save.cookies=true must be set in jmeter.properties</stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+      <stringProp name="TestPlan.user_define_classpath">
+      </stringProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="HOST" elementType="Argument">
             <stringProp name="Argument.name">HOST</stringProp>
-            <stringProp name="Argument.value">${__P(host,localhost)}</stringProp>
+            <stringProp name="Argument.value">${__property(host,localhost)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
             <stringProp name="Argument.name">PORT</stringProp>
-            <stringProp name="Argument.value">${__P(port,8082)}</stringProp>
+            <stringProp name="Argument.value">${__property(port,8082)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="THREADS" elementType="Argument">
             <stringProp name="Argument.name">THREADS</stringProp>
-            <stringProp name="Argument.value">${__P(threads,5)}</stringProp>
+            <stringProp name="Argument.value">${__property(threads,2)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="RAMPUP" elementType="Argument">
             <stringProp name="Argument.name">RAMPUP</stringProp>
-            <stringProp name="Argument.value">${__P(rampup,10)}</stringProp>
+            <stringProp name="Argument.value">${__property(rampup,3)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="REPEAT" elementType="Argument">
             <stringProp name="Argument.name">REPEAT</stringProp>
-            <stringProp name="Argument.value">${__P(repeat,1)}</stringProp>
+            <stringProp name="Argument.value">${__property(repeat,1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="REPORTDIR" elementType="Argument">
             <stringProp name="Argument.name">REPORTDIR</stringProp>
-            <stringProp name="Argument.value">${__P(reportdir,report.jtl)}</stringProp>
+            <stringProp name="Argument.value">${__property(reportdir,report.jtl)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="THREADPAUSE" elementType="Argument">
             <stringProp name="Argument.name">THREADPAUSE</stringProp>
-            <stringProp name="Argument.value">${__P(threadpause,100)}</stringProp>
+            <stringProp name="Argument.value">${__P(threadpause,300)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PATH" elementType="Argument">
             <stringProp name="Argument.name">PATH</stringProp>
-            <stringProp name="Argument.value">${__P(path,/ir/item)}</stringProp>
+            <stringProp name="Argument.value">${__property(path,/scape/entity)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="AUTHUSER" elementType="Argument">
@@ -60,17 +61,12 @@
           </elementProp>
           <elementProp name="AUTHPASS" elementType="Argument">
             <stringProp name="Argument.name">AUTHPASS</stringProp>
-            <stringProp name="Argument.value">${__P(authpass,esciDoc)}</stringProp>
+            <stringProp name="Argument.value">${__property(authpass,esciDoc)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="TESTDATEN" elementType="Argument">
             <stringProp name="Argument.name">TESTDATEN</stringProp>
-            <stringProp name="Argument.value">${__P(testdaten,testdaten.csv)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="LOGINTARGET" elementType="Argument">
-            <stringProp name="Argument.name">LOGINTARGET</stringProp>
-            <stringProp name="Argument.value">${__P(logintarget,/AdminTool)}</stringProp>
+            <stringProp name="Argument.value">${__property(testdaten,testdaten.csv)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LOGINPATH" elementType="Argument">
@@ -78,9 +74,24 @@
             <stringProp name="Argument.value">${__P(loginpath,/aa/login)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="LOGINTARGET" elementType="Argument">
+            <stringProp name="Argument.name">LOGINTARGET</stringProp>
+            <stringProp name="Argument.value">${__property(logintarget,/AdminTool)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="LOGINACTION" elementType="Argument">
             <stringProp name="Argument.name">LOGINACTION</stringProp>
-            <stringProp name="Argument.value">${__P(loginaction,/aa/j_spring_security_check)}</stringProp>
+            <stringProp name="Argument.value">${__property(loginaction,/aa/j_spring_security_check)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RESULTDIR" elementType="Argument">
+            <stringProp name="Argument.name">RESULTDIR</stringProp>
+            <stringProp name="Argument.value">${__property(resultdir,objects.csv)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="SCRIPTDIR" elementType="Argument">
+            <stringProp name="Argument.name">SCRIPTDIR</stringProp>
+            <stringProp name="Argument.value">${__property(scriptdir,xpath.bsh)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="EXAMPLESREPORTDIR" elementType="Argument">
@@ -94,10 +105,11 @@
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LOADEXAMPLES" elementType="Argument">
-            <stringProp name="Argument.name">REINDEXPATH</stringProp>
-            <stringProp name="Argument.value">${__property(reindexpath,report.jtl)}</stringProp>
+            <stringProp name="Argument.name">LOADEXAMPLES</stringProp>
+            <stringProp name="Argument.value">${__property(loadexamples,report.jtl)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+         
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -110,31 +122,31 @@
         <stringProp name="HTTPSampler.connect_timeout"></stringProp>
         <stringProp name="HTTPSampler.response_timeout"></stringProp>
         <stringProp name="HTTPSampler.protocol"></stringProp>
-        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
         <stringProp name="HTTPSampler.path"></stringProp>
       </ConfigTestElement>
       <hashTree/>
       <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
         <collectionProp name="CookieManager.cookies"/>
-        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
       </CookieManager>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Login" enabled="true">
-        <stringProp name="ThreadGroup.on_sample_error">stoptestnow</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Schleifen-Controller (Loop Controller)" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1314181129000</longProp>
-        <longProp name="ThreadGroup.end_time">1314181129000</longProp>
+        <stringProp name="ThreadGroup.ramp_time">60</stringProp>
+        <longProp name="ThreadGroup.start_time">1314257076000</longProp>
+        <longProp name="ThreadGroup.end_time">1314257076000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Einmal-Controller" enabled="true"/>
+        <OnceOnlyController guiclass="OnceOnlyControllerGui" testclass="OnceOnlyController" testname="Login Controller" enabled="true"/>
         <hashTree>
           <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="/aa/login" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -286,6 +298,8 @@ print(vars.get(&quot;COOKIE_JSESSIONID&quot;));
 print(vars.get(&quot;COOKIE_escidocCookie&quot;));
 props.put(&quot;cookiedata1&quot;,vars.get(&quot;COOKIE_escidocCookie&quot;));
 props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
+
+
 </stringProp>
               <stringProp name="TestPlan.comments">CookieManager.save.cookies=true must be set in jmeter.properties</stringProp>
             </BeanShellPostProcessor>
@@ -324,7 +338,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
             </ResultCollector>
             <hashTree/>
           </hashTree>
-          <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="/adm/admin/reindex/false/" enabled="false">
+          <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="/adm/admin/load-examples" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
@@ -334,8 +348,8 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol">http</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">${REINDEXPATH}</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <stringProp name="HTTPSampler.path">${LOADEXAMPLES}</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -344,7 +358,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSampler2>
           <hashTree>
-            <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Reindex Report" enabled="false">
+            <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Load Examples Report" enabled="true">
           	<boolProp name="ResultCollector.error_logging">false</boolProp>
           	<objProp>
             <name>saveConfig</name>
@@ -380,8 +394,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
           </hashTree>
         </hashTree>
       </hashTree>
-
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Retrieve" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Schleifen-Controller (Loop Controller)" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -390,21 +403,21 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
         <stringProp name="ThreadGroup.num_threads">${THREADS}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${RAMPUP}</stringProp>
         <longProp name="ThreadGroup.start_time">1312961550000</longProp>
-        <longProp name="ThreadGroup.end_time">1312961550000</longProp>
+        <longProp name="ThreadGroup.end_time">1314191685000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Testdaten" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Testdaten" enabled="false">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="filename">${TESTDATEN}</stringProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">false</boolProp>
           <stringProp name="shareMode">Current thread group</stringProp>
-          <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">pid</stringProp>
+          <boolProp name="stopThread">true</boolProp>
+          <stringProp name="variableNames">filepath,filename,mime</stringProp>
         </CSVDataSet>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -420,7 +433,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="GET ${PATH}" enabled="true">
+        <HTTPSampler2 guiclass="HttpTestSampleGui2" testclass="HTTPSampler2" testname="POST ${PATH}" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Benutzer definierte Variablen" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -430,28 +443,31 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${PATH}/${pid}</stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <stringProp name="HTTPSampler.path">${PATH}</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="${filepath}" elementType="HTTPFileArg">
+                <stringProp name="File.path">${filepath}</stringProp>
+                <stringProp name="File.paramname"></stringProp>
+                <stringProp name="File.mimetype">${mime}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
           <boolProp name="HTTPSampler.monitor">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSampler2>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Versicherte Anwort" enabled="false">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="-1367126123">&lt;/escidocItem:item&gt;</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">2</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Konstanter Timer" enabled="false">
-            <stringProp name="ConstantTimer.delay">${THREADPAUSE}</stringProp>
-          </ConstantTimer>
+          <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="true">
+            <stringProp name="scriptLanguage">beanshell</stringProp>
+            <stringProp name="parameters">${RESULTDIR} </stringProp>
+            <stringProp name="filename">${SCRIPTDIR}</stringProp>
+            <stringProp name="script"></stringProp>
+          </JSR223Listener>
           <hashTree/>
         </hashTree>
         <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Report" enabled="true">
@@ -481,6 +497,7 @@ props.put(&quot;cookiedata2&quot;,vars.get(&quot;COOKIE_JSESSIONID&quot;));
               <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
             </value>
           </objProp>
           <stringProp name="filename">${REPORTDIR}</stringProp>
