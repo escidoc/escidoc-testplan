@@ -109,7 +109,7 @@
 		<jmeter.threads>9</jmeter.threads>
 		<jmeter.retrieve.threads>8</jmeter.retrieve.threads>
 		<jmeter.update.threads>8</jmeter.update.threads>
-		<jmeter.rampup>18</jmeter.rampup>
+		<jmeter.rampup>100</jmeter.rampup>
 
 	</properties> 
 	
