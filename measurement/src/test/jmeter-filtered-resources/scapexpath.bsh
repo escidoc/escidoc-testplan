@@ -115,6 +115,18 @@ if (props.get("basedir") != null && props.get("basedir") != "") {
 	p1 = new PrintStream(f1);
 	this.interpreter.setOut(p1);
 	print(objectId);
+	
+	
+	
+	filename2=props.get("basedir") + "/testdaten/config/testdaten_"+ objectType +"_list.csv";
+	if (thread == 0) {
+	  f2 = new FileOutputStream(filename2,false);
+	} else { 
+	  f2 = new FileOutputStream(filename2,true);	
+	}
+	p2 = new PrintStream(f2);
+	this.interpreter.setOut(p2);
+	print("http://localhost:8080/scape/entity/"+objectId);
 
 	// rausschreiben der Responses
 //	if (thread > -1 ) { 		    

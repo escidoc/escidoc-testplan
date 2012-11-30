@@ -104,7 +104,11 @@
 		<api.entitypath>${api_entitypath}</api.entitypath>
 		<api.entitylifecyclepath>${api_entitylifecyclepath}</api.entitylifecyclepath>
 		<api.entityasyncpath>${api_entityasyncpath}</api.entityasyncpath>
+		<api.entitymetadatapath>${api_entitymetadatapath</api.entitymetadatapath>
+		<api.entityrepresentationpath>${api_entityrepresentationpath}</api.entityrepresentationpath>
 		<api.reindexpath>${api_reindexpath}</api.reindexpath>
+		<api.entitylistpath>${api_enitylistpath}</api.entitylistpath>
+		<api.entityversionlistpath>${api_entityversionlistpath}</api.entityversionlistpath>
 		<!--  JMETER Threads -->
 		<jmeter.threads>9</jmeter.threads>
 		<jmeter.retrieve.threads>8</jmeter.retrieve.threads>
@@ -872,8 +876,12 @@
 			<testdaten>1.4-SCAPE-SNAPSHOT</testdaten>
 			<!-- Rest API -->
 			<api_entitypath>/scape/entity</api_entitypath>
+			<api_entitylistpath>/scape/entity-list</api_entitylistpath>
+			<api_entityversionlistpath>/scape/entity-version-list</api_entityversionlistpath>
 			<api_entityasyncpath>/scape/entity-async</api_entityasyncpath>
 			<api_entitylifecyclepath>/scape/lifecycle</api_entitylifecyclepath>
+			<api_entitymetadatapath>/scape/metadata</api_entitymetadatapath>
+			<api_entityrepresentationpath>/scape/representation</api_entityrepresentationpath>
 			<api_reindexpath>adm/admin/reindex/false/</api_reindexpath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
@@ -885,7 +893,11 @@
 			  <module>Install_Escidoc_First</module>
 			  <module>Create_IntellectualEntity</module>
 			  <module>Retrieve_Entity</module>
+			  <module>Retrieve_EntityList</module>
 			  <module>Retrieve_Lifecycle</module>
+			  <module>Retrieve_Metadata</module>
+			  <module>Retrieve_EntityVersionList</module>
+			  <!-- module>Retrieve_Representation</module -->
 			  <module>Create_IntellectualEntityAsync</module>
   		  </modules>  
 	      <build>
@@ -967,6 +979,8 @@
 			<api_entitypath>/scape/entity</api_entitypath>
 			<api_entityasyncpath>/scape/entity-async</api_entityasyncpath>
 			<api_entitylifecyclepath>/scape/lifecycle</api_entitylifecyclepath>
+			<api_entitymetadatapath>/scape/metadata</api_entitymetadatapath>
+			<api_entityrepresentationpath>/scape/representation</api_entityrepresentationpath>
 		    <api_loginpath>/aa/login</api_loginpath>
 			<api_loginaction>/aa/j_spring_security_check</api_loginaction>
 			<api_logintarget>/AdminTool</api_logintarget>
@@ -978,6 +992,8 @@
 			  <module>Create_IntellectualEntity</module>
 			  <module>Retrieve_Entity</module>
 			  <module>Retrieve_Lifecycle</module>
+			  <module>Retrieve_Metadata</module>
+			  <module>Retrieve_Representation</module>
 			  <module>Create_IntellectualEntityAsync</module>
   		  </modules>  
 	        <build>
